@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Lab2OOP
 {
@@ -43,7 +44,7 @@ namespace Lab2OOP
             }
             return new MyMatrix(result);
         }
-        private double[,] GetTransposedArray()
+        private double[,] GetTransponedArray()
         {
             double[,] transposed = new double[Width, Height];
             for (int i = 0; i < Height; i++)
@@ -54,6 +55,14 @@ namespace Lab2OOP
                 }
             }
             return transposed;
+        }
+        public MyMatrix GetTransponedCopy()
+        {
+            return new MyMatrix(GetTransponedArray());
+        }
+        public void TransponeMe()
+        {
+            matrix = GetTransponedArray();
         }
     }
 }
