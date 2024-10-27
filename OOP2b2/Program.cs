@@ -27,10 +27,22 @@ namespace OOP2b2
 
             Console.WriteLine("Fraction 1: " + frac1);
             Console.WriteLine("Fraction 2: " + frac2);
+
+            Console.WriteLine("Fraction 1 with integer part: " + frac1.ToStringWithIntegerPart());
+            Console.WriteLine("Fraction 2 with integer part: " + frac2.ToStringWithIntegerPart());
+
+            Console.WriteLine("Fraction 1 as double: " + frac1.DoubleValue());
+            Console.WriteLine("Fraction 2 as double: " + frac2.DoubleValue());
+           
             Console.WriteLine("Plus: " + frac1.Plus(frac2));
             Console.WriteLine("Minus: " + frac1.Minus(frac2));
+           
             Console.WriteLine("Multiply: " + frac1.Multiply(frac2));
             Console.WriteLine("Divide: " + frac1.Divide(frac2));
+
+            Console.WriteLine("Series 1 result up to numerator of fraction 1: " + MyFrac.CalculateSeries1(frac1.Numerator));
+            Console.WriteLine("Series 2 result up to numerator of fraction 2: " + MyFrac.CalculateSeries2(frac2.Numerator));
+
             Console.ReadLine();
         }
     }
@@ -73,6 +85,21 @@ namespace OOP2b2
         {
             return $"{Numerator}/{Denominator}";
         }
+        public string ToStringWithIntegerPart()
+        {
+            int intPart = Numerator / Denominator;
+            MyFrac remainingFrac = new MyFrac(Numerator % Denominator, Denominator);
+            if (intPart >= 0)
+            {
+                return $"{intPart}+{remainingFrac}";
+            }
+            return $"{intPart}{remainingFrac}";
+        }
+
+        public double DoubleValue()
+        {
+            return (double)Numerator / Denominator;
+        }
         public MyFrac Plus(MyFrac other)
         {
             int newNumerator = Numerator * other.Denominator + Denominator * other.Numerator;
@@ -102,6 +129,27 @@ namespace OOP2b2
             int newNumerator = Numerator * other.Denominator;
             int newDenominator = Denominator * other.Numerator;
             return new MyFrac(newNumerator, newDenominator);
+        }
+        public static MyFrac CalculateSeries1(int n)
+        {
+            MyFrac result = new MyFrac(0, 1);
+            for (int i = 1; i <= n; i++)
+            {
+                MyFrac plus = new MyFrac(1, i * (i + 1));
+                result = result.Plus(plus);
+            }
+            return result;
+        }
+
+        public static MyFrac CalculateSeries2(int n)
+        {
+            MyFrac result = new MyFrac(1, 1);
+            for (int i = 2; i <= n; i++)
+            {
+                MyFrac minus = new MyFrac(1, i * i);
+                result = result.Multiply(new MyFrac(1, 1).Minus(minus));
+            }
+            return result;
         }
     }
 }
