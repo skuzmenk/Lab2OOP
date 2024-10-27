@@ -72,11 +72,55 @@ namespace Lab2OOP
         }
         public int Height
         {
-            get { return matrix.GetLength(0); }
+            get
+            {
+                return matrix.GetLength(0); 
+            }
         }
         public int Width
         {
-            get { return matrix.GetLength(1); }
+            get 
+            { 
+                return matrix.GetLength(1);
+            }
+        }
+        // Java-style getter
+        public int getHeight()
+        {
+            return Height;
+        }
+        public int getWidth()
+        {
+            return Width;
+        }
+        // Індексатор для доступу до елементів матриці
+        public double this[int row, int col]
+        {
+            get
+            {
+                if (row < 0 || row >= Height || col < 0 || col >= Width)
+                    throw new IndexOutOfRangeException("Індекс виходить за межі матриці.");
+                return matrix[row, col];
+            }
+            set
+            {
+                if (row < 0 || row >= Height || col < 0 || col >= Width)
+                    throw new IndexOutOfRangeException("Індекс виходить за межі матриці.");
+                matrix[row, col] = value;
+            }
+        }
+        override public String ToString()
+        {
+            string result = "";
+            for (int i = 0; i < Height; i++)
+            {
+                for (int j = 0; j < Width; j++)
+                {
+                    result += matrix[i, j] + "\t"; 
+                }
+                result += Environment.NewLine; 
+            }
+            return result;
         }
 
     }

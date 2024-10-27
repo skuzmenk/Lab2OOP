@@ -12,6 +12,8 @@ namespace Lab2OOP
         {
             string line = "1 2 3 \n 4 5 6 \n 7 8 9";
             MyMatrix myMatrix = new MyMatrix(line);
+            Console.WriteLine(myMatrix);
+            Console.ReadLine();
         }
     }
 }
