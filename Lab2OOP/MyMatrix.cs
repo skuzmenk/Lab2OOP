@@ -10,12 +10,66 @@ namespace Lab2OOP
     public class MyMatrix
     {
         protected double[,] matrix;
-        
-        public MyMatrix(MyMatrix other) 
+
+        public MyMatrix(MyMatrix other)
         {
-            matrix = (double[,])other.matrix.Clone();
+            int height = other.matrix.GetLength(0);
+            int width = other.matrix.GetLength(1);
+            matrix = new double[height, width];
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    matrix[i, j] = other.matrix[i, j]; 
+                }
+            }
         }
-       
+        public MyMatrix(double[,] matrix)
+        {
+            this.matrix = matrix;
+        }
+        public MyMatrix(double[][] jaggedArray)
+        {
+            int rowCount = jaggedArray.Length;
+            if (rowCount == 0)
+                throw new ArgumentException("Jagged array cannot be empty");
+            int colCount = jaggedArray[0].Length;
+            for (int i = 1; i < rowCount; i++)
+            {
+                if (jaggedArray[i].Length != colCount)
+                {
+                    throw new ArgumentException("Jagged array is not rectangular.");
+                }
+            }
+            matrix = new double[rowCount, colCount];
+            for (int i = 0; i < rowCount; i++)
+            {
+                for (int j = 0; j < colCount; j++)
+                {
+                    matrix[i, j] = jaggedArray[i][j];
+                }
+            }
+        }
+        public MyMatrix(string matrixString)
+        {
+            string[] rows = matrixString.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            if (rows.Length == 0)
+                throw new ArgumentException("Matrix cannot be empty.");
+
+            int colCount = rows[0].Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries).Length;
+            matrix = new double[rows.Length, colCount];
+
+            for (int i = 0; i < rows.Length; i++)
+            {
+                string[] elementsString = rows[i].Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                if (elementsString.Length != colCount)
+                    throw new ArgumentException("Matrix is not rectangular.");
+
+                for (int j = 0; j < colCount; j++)
+                    matrix[i, j] = double.Parse(elementsString[j]);
+            }
+        }
         public int Height
         {
             get { return matrix.GetLength(0); }
