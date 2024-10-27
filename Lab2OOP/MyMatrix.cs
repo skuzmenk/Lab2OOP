@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace Lab2OOP
 {
-    public class MyMatrix
+    public partial class MyMatrix
     {
         protected double[,] matrix;
 
@@ -93,19 +93,18 @@ namespace Lab2OOP
         {
             return Width;
         }
-        // Індексатор для доступу до елементів матриці
         public double this[int row, int col]
         {
             get
             {
                 if (row < 0 || row >= Height || col < 0 || col >= Width)
-                    throw new IndexOutOfRangeException("Індекс виходить за межі матриці.");
+                    throw new IndexOutOfRangeException("The index is out of bounds of the matrix.");
                 return matrix[row, col];
             }
             set
             {
                 if (row < 0 || row >= Height || col < 0 || col >= Width)
-                    throw new IndexOutOfRangeException("Індекс виходить за межі матриці.");
+                    throw new IndexOutOfRangeException("The index is out of bounds of the matrix.");
                 matrix[row, col] = value;
             }
         }

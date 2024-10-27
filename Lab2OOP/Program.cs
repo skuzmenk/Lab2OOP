@@ -11,8 +11,18 @@ namespace Lab2OOP
         static void Main(string[] args)
         {
             string line = "1 2 3 \n 4 5 6 \n 7 8 9";
-            MyMatrix myMatrix = new MyMatrix(line);
-            Console.WriteLine(myMatrix);
+            MyMatrix firstmatrix = new MyMatrix(line);
+            Console.WriteLine("First matrix: ");
+            Console.WriteLine(firstmatrix);
+            MyMatrix secondmatrix = new MyMatrix(new double[,] { { 1, 2, 3 }, { 3, 4, 5 }, { 5, 6, 7 } });
+            Console.WriteLine("Second matrix: ");
+            Console.WriteLine(secondmatrix);
+            MyMatrix resultMatrixAdd = firstmatrix + secondmatrix;
+            Console.WriteLine("Result of Matrix Addition:");
+            Console.WriteLine(resultMatrixAdd);
+            MyMatrix resultMatrixMult = firstmatrix * secondmatrix;
+            Console.WriteLine("Result of Matrix Addition:");
+            Console.WriteLine(resultMatrixMult);
             Console.ReadLine();
         }
     }
