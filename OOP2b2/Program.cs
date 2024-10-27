@@ -29,6 +29,8 @@ namespace OOP2b2
             Console.WriteLine("Fraction 2: " + frac2);
             Console.WriteLine("Plus: " + frac1.Plus(frac2));
             Console.WriteLine("Minus: " + frac1.Minus(frac2));
+            Console.WriteLine("Multiply: " + frac1.Multiply(frac2));
+            Console.WriteLine("Divide: " + frac1.Divide(frac2));
             Console.ReadLine();
         }
     }
@@ -82,6 +84,23 @@ namespace OOP2b2
         {
             int newNumerator = Numerator * other.Denominator - Denominator * other.Numerator;
             int newDenominator = Denominator * other.Denominator;
+            return new MyFrac(newNumerator, newDenominator);
+        }
+        public MyFrac Multiply(MyFrac other)
+        {
+            int newNumerator = Numerator * other.Numerator;
+            int newDenominator = Denominator * other.Denominator;
+            return new MyFrac(newNumerator, newDenominator);
+        }
+
+        public MyFrac Divide(MyFrac other)
+        {
+            if (other.Numerator == 0)
+            {
+                throw new DivideByZeroException("Cannot divide by a fraction with zero numerator.");
+            }
+            int newNumerator = Numerator * other.Denominator;
+            int newDenominator = Denominator * other.Numerator;
             return new MyFrac(newNumerator, newDenominator);
         }
     }
