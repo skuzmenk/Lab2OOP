@@ -43,5 +43,17 @@ namespace Lab2OOP
             }
             return new MyMatrix(result);
         }
+        private double[,] GetTransposedArray()
+        {
+            double[,] transposed = new double[Width, Height];
+            for (int i = 0; i < Height; i++)
+            {
+                for (int j = 0; j < Width; j++)
+                {
+                    transposed[j, i] = matrix[i, j];
+                }
+            }
+            return transposed;
+        }
     }
 }
