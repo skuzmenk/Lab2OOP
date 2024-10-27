@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Lab2OOP
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            number1 myNumber1 = new number1();
+            string line = "1 2 3 \n 4 5 6 \n 7 8 9";
+            MyMatrix myMatrix = new MyMatrix(line);
         }
     }
 }
