@@ -21,7 +21,7 @@ namespace Lab2OOP
             Console.WriteLine("Result of Matrix Addition:");
             Console.WriteLine(resultMatrixAdd);
             MyMatrix resultMatrixMult = firstmatrix * secondmatrix;
-            Console.WriteLine("Result of Matrix Addition:");
+            Console.WriteLine("Result of Matrix Mult:");
             Console.WriteLine(resultMatrixMult);
 
             MyMatrix transposedMatrix = firstmatrix.GetTransponedCopy();
